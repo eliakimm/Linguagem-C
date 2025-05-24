@@ -23,32 +23,36 @@ pItem* criar(void){
 void insereIn(pItem* l, int n);
 void insereFim(pItem* l, int n);
 void imprimir(pItem* l);
-void removerItem(pItem* l, int n);
+int removerItem(pItem* l, char s[2]);
 int buscaItem(pItem* l, int n);
 void liberarLista(pItem* l);
 
 int main(){
     int n;
+    char op[2];
 
     //Inicia a lista:
     pItem* l;
     l= criar();
     
-    //Insere elementos no inicio da lista:
-    printf("Insira um elemento na lista:\n");
-    scanf("%d", &n);
-    while(n != 0){
-    insereIn(l, n);
-    printf("Insira um elemento no inicio da lista:\n");
-    scanf("%d", &n);}
+    scanf("%s", op);
+    while(op[0] != 'X'){
+        if(op[0] == 'I'){
+            scanf("%d", &n);
+            insereIn(l, n);}
+        else if(op[0] == 'F'){
+            scanf("%d", &n);
+            insereFim(l,n);}
+        else if(op[0] == 'D'){
+            printf("%d\n", removerItem(l,op));}
+        else if(op[0] == 'P'){
+        printf("%d\n", removerItem(l,op));}
+        imprimir(l);
+        printf("\n");
+        scanf("%s", op);
+    }
 
-    printf("excluir o seguinte item da lista:\n");
-    scanf("%d", &n);
-    removerItem(l,n);
-    
     imprimir(l);
-
-    liberarLista(l);
     return 0;
 }
 
@@ -77,26 +81,24 @@ void imprimir(pItem* l){
     }
 }
 
-void removerItem(pItem* l, int n){
+int removerItem(pItem* l, char s[2]){
+    int num;
     lista* ant;
     lista* aux= l->prim;
-    int res= buscaItem(l,n);
-    if(res == 0){
-        printf("O item nao existe na lista\n");
-    }else{
-        while(aux->item != n){
+    if(s[0] == 'D'){
+        num= aux->item;
+        l->prim= aux->prox;
+        free(aux);}
+    else{
+        while(aux != NULL){
             ant= aux;
+            num= ant->item;
             aux= aux->prox;
         }
-        if(aux != NULL){
-            if(ant == NULL){
-                l->prim= aux->prox;
-            }
-            else{
-                ant->prox= aux->prox;
-            }
-        }
-        free(aux);}
+        
+    }
+
+    return num;
 }
 
 int buscaItem(pItem* l, int n){
