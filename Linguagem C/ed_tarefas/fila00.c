@@ -22,6 +22,7 @@ fItem* criar(void){
 
 void insere(fItem* f, int n);
 void imprimir(fItem* f);
+void liberar(fItem* f);
 int dequeue(fItem* f);
 int isempty(fItem* f);
 
@@ -39,6 +40,7 @@ int main(){
 
     dequeue(f);
     imprimir(f);
+    liberar(f);
 
     return 0;
 }
@@ -80,4 +82,15 @@ int dequeue(fItem* f){
 
     free(aux);
     return n;
+}
+
+void liberar(fItem* f){
+    fila* aux= f->prim;
+
+    while(aux != NULL){
+        fila* tem= aux->prox;
+        free(aux);
+        aux= tem;
+    }
+    free(f);
 }

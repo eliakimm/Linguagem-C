@@ -187,3 +187,24 @@
 // }
 
 
+#include <stdio.h>
+
+int main() {
+    char entrada[10];
+    char op;
+    int valor;
+
+    printf("Digite um comando (ex: F 45): ");
+    fgets(entrada, sizeof(entrada), stdin);
+
+    // Tenta ler o caractere e o inteiro
+    if (sscanf(entrada, "%c %d", &op, &valor) == 2) {
+        printf("Operação: %c\n", op);
+        printf("Valor: %d\n", valor);
+    } else {
+        printf("Entrada inválida!\n");
+    }
+
+    return 0;
+}
+
