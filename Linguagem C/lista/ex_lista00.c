@@ -50,7 +50,7 @@ int main(){
         fgets(comando, sizeof(comando), stdin);
         sscanf(comando, "%s %d", &op, &n);
     }
-    printf("\n");
+    
     imprimir(l);
     liberarLista(l);
     return 0;
@@ -81,7 +81,7 @@ void insereFim(pItem* l, int n){
 
 void imprimir(pItem* l){
     for(lista* aux= l->prim; aux != NULL; aux= aux->prox){
-        printf("%d\n", aux->item);
+        printf("\n%d", aux->item);
     }
 }
 
@@ -129,4 +129,6 @@ void liberarLista(pItem* l){
         aux= tem;
     }
     free(l);
+    l->prim= NULL;
+    l->ult= NULL;
 }

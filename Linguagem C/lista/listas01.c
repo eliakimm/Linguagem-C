@@ -47,8 +47,10 @@ int main(){
     removerItem(l,n);
     
     imprimir(l);
-
+    
+    printf("Excluindo a lista:");
     liberarLista(l);
+    imprimir(l);
     return 0;
 }
 
@@ -60,44 +62,52 @@ void insereIn(pItem* l, int n){
 }
 
 void insereFim(pItem* l, int n){
-    lista* novo= (lista*) malloc(sizeof(lista));
-    novo->item= n;
-    novo->prox= NULL;
+    if(l->prim == NULL){
+        insereIn(l,n);}
+    else{
+        lista* novo= (lista*) malloc(sizeof(lista));
+        novo->item= n;
+        novo->prox= NULL;
 
-    lista* aux= l->prim;
-    while(aux->prox != NULL){
-        aux= aux->prox;
-    }
-    aux->prox= novo;
+        lista* aux= l->prim;
+        while(aux->prox != NULL){
+            aux= aux->prox;
+        }
+        aux->prox= novo;}
 }
 
 void imprimir(pItem* l){
-    for(lista* aux= l->prim; aux != NULL; aux= aux->prox){
-        printf("%d ", aux->item);
-    }
+    if(l->prim == NULL){
+        printf("\nlista vazia...");}
+    else{
+        for(lista* aux= l->prim; aux != NULL; aux= aux->prox){
+            printf("%d ", aux->item);}
+        printf("\n");}
 }
 
 void removerItem(pItem* l, int n){
-    lista* ant;
-    lista* aux= l->prim;
-    int res= buscaItem(l,n);
-    if(res == 0){
+    lista* ant = NULL;
+    lista* aux = l->prim;
+
+    while (aux != NULL && aux->item != n) {
+        ant = aux;
+        aux = aux->prox;
+    }
+
+    if (aux == NULL) {
         printf("O item nao existe na lista\n");
-    }else{
-        while(aux->item != n){
-            ant= aux;
-            aux= aux->prox;
-        }
-        if(aux != NULL){
-            if(ant == NULL){
-                l->prim= aux->prox;
-            }
-            else{
-                ant->prox= aux->prox;
-            }
-        }
-        free(aux);}
+        return;
+    }
+
+    if (ant == NULL) { // item está no primeiro nó
+        l->prim = aux->prox;
+    } else {
+        ant->prox = aux->prox;
+    }
+
+    free(aux);
 }
+
 
 int buscaItem(pItem* l, int n){
     for(lista* aux= l->prim; aux != NULL; aux= aux->prox){
@@ -115,5 +125,5 @@ void liberarLista(pItem* l){
         free(aux);
         aux= tem;
     }
-    free(l);
+    l->prim= NULL;
 }
