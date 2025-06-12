@@ -26,17 +26,18 @@ void merge(int *vet, int inicio, int meio, int fim){
                 else{
                     aux[i]= vet[part2];}}}
         for(j= 0, k= inicio; j < tamanho; j++, k++){
-            vet[k]= aux[j];
-        }
+            vet[k]= aux[j];}
+        free(aux);
         }
 }
 
 void mergeSort(int *vet, int inicio, int fim){
-    int meio;
+    int meio= floor((inicio + fim)/2);
     if(inicio < fim){
-        meio= floor((inicio + fim)/2);
+        //Divide o vetor em partes enquanto vetor > 0:
         mergeSort(vet, inicio, meio);
         mergeSort(vet, meio + 1, fim);
+        //Junta as partes de forma ordenada:
         merge(vet, inicio, meio, fim);
     }
 }

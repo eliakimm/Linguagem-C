@@ -18,9 +18,10 @@ void bubblesort(int vet[], int tam){
 }
 
 int main(){
-    int vet[7]= {7, 8, 9, 4, 9, 5, 2}; 
-    bubblesort(vet, 7);
-    for(int i= 0; i < 7; i++){
+    int vet[26]= {117, 90, 88, 83, 81, 77, 74, 69, 64, 63, 51, 50, 49, 42, 41, 34, 32, 29, 28, 22, 16, 8, 6, 5, 3, 1};
+    
+    bubblesort(vet, 26);
+    for(int i= 0; i < 26; i++){
         printf("%d ", vet[i]);
     }
     return 0;
