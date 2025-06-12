@@ -42,9 +42,11 @@ void mergeSort(int *vet, int inicio, int fim){
 }
 
 int main(){
-   int vet[7]= {7, 8, 9, 4, 9, 5, 2};
-   mergeSort(vet, 0, 7); 
-   for(int i= 0; i < 7; i++){
+   int vet[]= {117, 90, 88, 83, 81, 77, 74, 69, 64, 63, 51, 50, 49, 42, 41, 34, 32, 29, 28, 22, 16, 8, 6, 5, 3, 1};
+   int tam = sizeof(vet) / sizeof(vet[0]);
+   mergeSort(vet, 0, tam -1);
+   printf("Quantidade de elementos: %d\n", tam); 
+   for(int i= 0; i < tam; i++){
         printf("%d ", vet[i]);
     }
     return 0;
