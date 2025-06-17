@@ -187,24 +187,58 @@
 // }
 
 
+// #include <stdio.h>
+
+// int main() {
+//     char entrada[10];
+//     char op;
+//     int valor;
+
+//     printf("Digite um comando (ex: F 45): ");
+//     fgets(entrada, sizeof(entrada), stdin);
+
+//     // Tenta ler o caractere e o inteiro
+//     if (sscanf(entrada, "%c %d", &op, &valor) == 2) {
+//         printf("Operação: %c\n", op);
+//         printf("Valor: %d\n", valor);
+//     } else {
+//         printf("Entrada inválida!\n");
+//     }
+
+//     return 0;
+// }
+
+
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+#define TAM 50
 
-int main() {
-    char entrada[10];
-    char op;
-    int valor;
-
-    printf("Digite um comando (ex: F 45): ");
-    fgets(entrada, sizeof(entrada), stdin);
-
-    // Tenta ler o caractere e o inteiro
-    if (sscanf(entrada, "%c %d", &op, &valor) == 2) {
-        printf("Operação: %c\n", op);
-        printf("Valor: %d\n", valor);
-    } else {
-        printf("Entrada inválida!\n");
+int main(){
+    char comando[TAM];
+    char nome[TAM];
+    char mat[TAM]; 
+    int encontrou= 0;
+    fgets(comando, TAM, stdin);
+    comando[strcspn(comando, "\n")] = '\0';
+    fflush(stdin);
+    int i= 0, j= 0, k=0;
+    while(comando[i] != '\0'){
+        if(!encontrou && isdigit(comando[i])) {
+            encontrou= 1;}
+        
+        if(encontrou){
+            mat[k++]= comando[i];}
+        else{
+            nome[j++]= comando[i];}
+        i++;
     }
+    
+    nome[j]= '\0';
+    mat[k]= '\0';
+    printf("Nome: %s\n", nome);
+    printf("Matricula: %s", mat);
 
     return 0;
 }
-
