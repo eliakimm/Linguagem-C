@@ -62,17 +62,17 @@ void imprimir(lista* cabeca){
     }
 }
 
-void remover(lista* cabeca, int n){
-    lista* ant;
-    lista* aux= cabeca;
-    while(aux->prox != NULL && aux->item != n){
-        ant= aux;
-        aux= aux->prox;
-    }
+// void remover(lista* cabeca, int n){
+//     lista* ant;
+//     lista* aux= cabeca;
+//     while(aux->prox != NULL && aux->item != n){
+//         ant= aux;
+//         aux= aux->prox;
+//     }
 
-    if(aux != NULL){
-        if(ant == NULL){
-            if(ant == NULL)
-        }
-    }
-}
+//     if(aux != NULL){
+//         if(ant == NULL){
+//             if(ant == NULL)
+//         }//Incompleto!!!
+//     }
+// }

@@ -1,9 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
  typedef struct filaNo fila;
 
  struct filaNo{
+    char nome[50];
     int item;
     fila* prox;
  };
@@ -20,7 +22,7 @@ fItem* criar(void){
     return f;
 }
 
-void insere(fItem* f, int n);
+void insere(fItem* f, int n, char* nome);
 void imprimir(fItem* f);
 void liberar(fItem* f);
 int dequeue(fItem* f);
@@ -30,11 +32,10 @@ int main(){
     fItem* f;
     f= criar();
 
-    insere(f,2);
-    insere(f,5);
-    insere(f,7);
-    insere(f,4);
-    imprimir(f);
+    insere(f,2, "eliakim pereira");
+    insere(f,6, "eliakim pereira");
+    insere(f,4, "eliakim pereira");
+    insere(f,3, "eliakim pereira");
 
     printf("\n");
 
@@ -51,14 +52,15 @@ int isempty(fItem* f){
 
 void imprimir(fItem* f){
     for(fila* aux= f->prim; aux != NULL; aux= aux->prox){
-        printf(" <-- %d", aux->item);
+        printf("nome: %s", aux->nome);
     }
 }
 
-void insere(fItem* f, int n){
+void insere(fItem* f, int n, char* nome){
     fila* novo= (fila*) malloc(sizeof(fila));
     novo->item= n;
     novo->prox= NULL;
+    strcpy(novo->nome,nome);
     if(f->prim == NULL){
         f->prim=novo;}
     else{
